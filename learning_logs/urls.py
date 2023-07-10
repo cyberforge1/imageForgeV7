@@ -16,10 +16,7 @@ urlpatterns = [
     # Page to show the about us content
     path('about/', views.about, name='about'),
     
-    # Addition for button click execution of newPromptInstance
-    path('run_prompt_script/', views.run_prompt_script, name='run_prompt_script'),
-    
-    # Addition for button click execution of newImageInstance
+    #Addition for button click execution of newImageInstance
     path('run_image_script/', views.run_image_script, name='run_image_script'),
     
 ]

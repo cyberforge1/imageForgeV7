@@ -1,12 +1,11 @@
 import os
 import openai
-from createQuery import generatePrompt
 from dotenv import load_dotenv
+from newPromptInstance import PROMPT
 
 load_dotenv()
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-PROMPT = generatePrompt()
 
 def generateImageURL():
     

@@ -33,16 +33,11 @@ def about(request):
     return render(request, 'learning_logs/about.html')
 
 
-def run_prompt_script(request):
-    subprocess.run(["python", "newPromptInstance.py"])
-    context = {
-        'message': 'Script executed successfully!'
-    }
-    return render(request, 'learning_logs/generation.html', context)
-
 def run_image_script(request):
     subprocess.run(["python", "newImageInstance.py"])
     context = {
         'message': 'Script executed successfully!'
     }
-    return render(request, 'learning_logs/generation.html', context)
+    return redirect('imageGeneration:gallery')
+
+

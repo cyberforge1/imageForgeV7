@@ -8,7 +8,6 @@ from imageGeneration.models import Image
 from createImage import PROMPT
 from saveImage import local_image_path
 
-from django.core.files import File
 from django.utils import timezone
 from imageGeneration.models import Image
 

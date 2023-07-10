@@ -2,7 +2,7 @@
 import os
 import requests
 import random
-from createImage import generateImageURL, PROMPT
+from createImage import generateImageURL
 from dotenv import load_dotenv
 
 load_dotenv()

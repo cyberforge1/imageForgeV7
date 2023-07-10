@@ -23,14 +23,24 @@
     </style>
   </head>
   <body>
-    <form action="{% url 'learning_logs:run_prompt_script' %}" method="post">
+
+
+
+    
+    <form id="new-image-form" action="{% url 'learning_logs:run_image_script' %}" method="post">
         {% csrf_token %}
-        <input type="submit" value="New Prompt">
+        <input id="new-image-button" type="submit" value="New Image">
     </form>
-    <form action="{% url 'learning_logs:run_image_script' %}" method="post">
-        {% csrf_token %}
-        <input type="submit" value="New Image">
-    </form>
+    
+    <script>
+        document.getElementById("new-image-form").addEventListener("submit", function() {
+            document.getElementById("new-image-button").disabled = true;
+        });
+    </script>
+
+
+
+
     </nav>
   </body>
 </html>

@@ -1,0 +1,19 @@
+# def run_prompt_script(request):
+#     subprocess.run(["python", "newPromptInstance.py"])
+#     context = {
+#         'message': 'Script executed successfully!'
+#     }
+#     return render(request, 'learning_logs/generation.html', context)
+
+
+
+    
+    # Addition for button click execution of newPromptInstance
+    #path('run_prompt_script/', views.run_prompt_script, name='run_prompt_script'),
+    
+    
+    
+        <!-- <form action="{% url 'learning_logs:run_prompt_script' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="New Prompt">
+    </form> -->
