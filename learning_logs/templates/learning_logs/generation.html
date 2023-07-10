@@ -23,29 +23,66 @@
     </style>
   </head>
   <body>
+    <div class="container">
+      <div
+        class="row justify-content-center align-items-center"
+        style="min-height: 100vh"
+      >
+        <div class="col-md-6">
+          <div class="text-center" style="margin-top: -40%">
+            <button
+              type="button"
+              class="btn btn-success btn-lg"
+              data-bs-toggle="modal"
+              data-bs-target="#myModal"
+            >
+              GENERATE
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-
-
-
-    <form id="new-image-form" action="{% url 'learning_logs:run_image_script' %}" method="post">
-        {% csrf_token %}
-        <input id="new-image-button" type="submit" value="New Image">
-    </form>
-    <form id="new-image-form" action="{% url 'learning_logs:run_prompt_script' %}" method="post">
-        {% csrf_token %}
-        <input id="new-image-button" type="submit" value="New Prompt">
-    </form>
-    
-    <script>
-        document.getElementById("new-image-form").addEventListener("submit", function() {
-            document.getElementById("new-image-button").disabled = true;
-        });
-    </script>
-
-
-
-
-    </nav>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="myModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myModalLabel"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center align-items-center">
+            <h5 class="modal-title w-100" id="myModalLabel">
+              Randomized Prompt
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>This is the content of the dialog box.</p>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">New Prompt</button>
+            <button type="button" class="btn btn-success">Create Image</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
 {% endblock content %}
