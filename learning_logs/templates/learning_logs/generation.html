@@ -23,6 +23,7 @@
     </style>
   </head>
   <body>
+    {% csrf_token %}
     <div class="container">
       <div
         class="row justify-content-center align-items-center"
@@ -30,18 +31,29 @@
       >
         <div class="col-md-6">
           <div class="text-center" style="margin-top: -40%">
-            <button
-              type="button"
-              class="btn btn-success btn-lg"
-              data-bs-toggle="modal"
-              data-bs-target="#myModal"
-            >
-              GENERATE
-            </button>
+              <button
+                type="submit"
+                class="btn btn-success btn-lg"
+                data-bs-toggle="modal"
+                data-bs-target="#myModal"
+                onclick="runPythonScript()"
+              >
+                GENERATE
+              </button>
+            </form>
           </div>
         </div>
       </div>
     </div>
+
+    <form
+      id="new-image-form"
+      action="{% url 'learning_logs:run_prompt_script' %}"
+      method="post"
+    >
+      {% csrf_token %}
+      <input id="new-image-button" type="submit" value="New Prompt" />
+    </form>
 
     <!-- Modal -->
     <div
@@ -67,7 +79,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>This is the content of the dialog box.</p>
+            <p>{{ prompt.get_text }}</p>
           </div>
           <div class="modal-footer justify-content-center">
             <button
@@ -83,6 +95,59 @@
         </div>
       </div>
     </div>
+
+
+
+
+    <script>
+        function runPythonScript() {
+          // Get the CSRF token from the cookie
+          var csrfToken = getCookie('csrftoken');
+      
+          // Send an AJAX request to the server
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "{% url 'learning_logs:run_prompt_script' %}", true);
+          xhr.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+          );
+          xhr.setRequestHeader("X-CSRFToken", csrfToken); // Include the CSRF token in the headers
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              // Handle the successful response
+              var response = xhr.responseText;
+              console.log(response);
+              // You can display the response or perform other actions here
+            } else {
+              // Handle the error case
+              console.error(xhr.statusText);
+            }
+          };
+          xhr.onerror = function () {
+            // Handle the network error case
+            console.error("Network Error");
+          };
+          // Send the request
+          xhr.send();
+        }
+      
+        // Function to get the CSRF token from the cookie
+        function getCookie(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie !== "") {
+            var cookies = document.cookie.split(";");
+            for (var i = 0; i < cookies.length; i++) {
+              var cookie = cookies[i].trim();
+              // Does this cookie string begin with the name we want?
+              if (cookie.substring(0, name.length + 1) === name + "=") {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+              }
+            }
+          }
+          return cookieValue;
+        }
+      </script>
   </body>
 </html>
 {% endblock content %}

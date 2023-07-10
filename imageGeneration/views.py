@@ -4,11 +4,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 
 
-def prompt(request):
-    '''Show all prompts'''
-    prompt = Prompt.objects.all()
-    context = {'prompt': prompt}
-    return render(request, 'imageGeneration/prompt.html', context)
 
 @login_required
 def image(request):
@@ -30,3 +25,4 @@ def gallery(request):
         'gallery': gallery,
     }
     return render(request, 'imageGeneration/gallery.html', context)
+

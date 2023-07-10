@@ -7,8 +7,6 @@ from . import views
 app_name = 'imageGeneration'
 
 urlpatterns = [
-    # Prompts
-    path('prompt/', views.prompt, name='prompt'),
     # Generated Images
     path('image/', views.image, name='image'),
     # Entire gallery

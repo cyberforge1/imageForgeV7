@@ -4,8 +4,9 @@ from django.http import Http404
 
 from django.shortcuts import render
 import subprocess
+from django.http import HttpResponse
 
-
+from imageGeneration.models import Prompt
 
 
 
@@ -18,7 +19,9 @@ def index(request):
 @login_required
 def generation(request):
     """Show generation page."""
-    return render(request, 'learning_logs/generation.html')
+    most_recent_prompt = Prompt.objects.latest('date_added')
+    context = {'prompt': most_recent_prompt}
+    return render(request, 'learning_logs/generation.html', context)
 
 def gallery(request):
     """Show gallery page."""
@@ -33,11 +36,13 @@ def about(request):
     return render(request, 'learning_logs/about.html')
 
 
+# Script execution on button click
+
 def run_image_script(request):
     subprocess.run(["python", "newImageInstance.py"])
     return redirect('imageGeneration:gallery')
 
-
 def run_prompt_script(request):
     subprocess.run(["python", "newPromptInstance.py"])
-    return redirect('learning_logs:generation')
+    return HttpResponse('Process started successfully.')
+
