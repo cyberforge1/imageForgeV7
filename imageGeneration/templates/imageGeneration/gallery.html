@@ -1,0 +1,19 @@
+{% extends 'learning_logs/base.html' %} {% block page_header %}
+<h1>Gallery</h1>
+{% endblock page_header %} {% block content %}
+<div class="container">
+  <div class="row">
+    {% for image in gallery %}
+    <div class="col-md-2 mb-4">
+      <div class="card">
+        <img
+          src="{{ image.get_image_url }}"
+          class="card-img-top"
+          alt="{{ image.get_text }}"
+        />
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

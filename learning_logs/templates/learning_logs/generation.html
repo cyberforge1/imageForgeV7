@@ -1,0 +1,37 @@
+{% extends 'learning_logs/base.html' %} {% block page_header %}
+<h1>Generation</h1>
+{% endblock page_header %} {% block content %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Button Example</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+    />
+    <style>
+      .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh; /* Adjust the height to make buttons 15% higher */
+      }
+      .button-container .btn-generate-image {
+        background-color: #28a745;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="{% url 'learning_logs:run_prompt_script' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="New Prompt">
+    </form>
+    <form action="{% url 'learning_logs:run_image_script' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="New Image">
+    </form>
+    </nav>
+  </body>
+</html>
+{% endblock content %}
