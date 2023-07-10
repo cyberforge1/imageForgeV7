@@ -35,9 +35,9 @@ def about(request):
 
 def run_image_script(request):
     subprocess.run(["python", "newImageInstance.py"])
-    context = {
-        'message': 'Script executed successfully!'
-    }
     return redirect('imageGeneration:gallery')
 
 
+def run_prompt_script(request):
+    subprocess.run(["python", "newPromptInstance.py"])
+    return redirect('learning_logs:generation')

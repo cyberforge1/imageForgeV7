@@ -26,10 +26,14 @@
 
 
 
-    
+
     <form id="new-image-form" action="{% url 'learning_logs:run_image_script' %}" method="post">
         {% csrf_token %}
         <input id="new-image-button" type="submit" value="New Image">
+    </form>
+    <form id="new-image-form" action="{% url 'learning_logs:run_prompt_script' %}" method="post">
+        {% csrf_token %}
+        <input id="new-image-button" type="submit" value="New Prompt">
     </form>
     
     <script>

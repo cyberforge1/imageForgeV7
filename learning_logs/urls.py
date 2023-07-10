@@ -19,4 +19,7 @@ urlpatterns = [
     #Addition for button click execution of newImageInstance
     path('run_image_script/', views.run_image_script, name='run_image_script'),
     
+    #Addition for button click execution of newImageInstance
+    path('run_prompt_script/', views.run_prompt_script, name='run_prompt_script'),
+    
 ]
